@@ -1,0 +1,57 @@
+1. eCPM
+	
+	(SUM(`revenue (adv currency)`) / SUM((`impressions` / 1000)))
+
+2. CTR
+	(SUM(`clicks`) / SUM(`impressions`))
+
+3. CPC
+	(SUM(`revenue (adv currency)`) / SUM(`clicks`))
+
+4. VTR
+	SUM(`complete views (video)`) / SUM(`impressions`)	
+
+4. CPCV
+	SUM(`revenue (adv currency)`)/ SUM(`complete views (video)`)
+
+5.Conv. 43%
+	(SUM(`total conversions`) * 0.43)
+
+6.eCPA 43%
+	(SUM(`revenue (adv currency)`) / SUM((`total conversions` * 0.43)))
+
+7.ROAS 43%
+	((SUM((`dcm post-click revenue` + `dcm post-view revenue`)) * 0.43) / SUM(`revenue (adv currency)`))
+
+8.GMS 43%
+	SUM( `dcm post-click revenue` + `dcm post-view revenue`)* 0.43
+
+9.AOS
+	(SUM((`dcm post-click revenue` + `dcm post-view revenue`)) / SUM(`total conversions`))
+
+10. Conv. Rate 43%
+	((SUM(`total conversions`) * 0.43) / SUM(`impressions`))
+
+
+11. Case Statement 
+	(CASE
+  	WHEN `placement` like '%Motion:15%' and `placement` like '%CC%' then 'Motion :15 - CC'
+ 	WHEN `placement` like '%Motion :15%' then 'Motion :15'
+ 	WHEN `placement` like '%Motion:15%' then 'Motion :15'
+ 	WHEN `placement` like '%Doggie Cam :15%' and `placement` like '%CC%' then 'Doggie Cam :15 - CC'
+ 	WHEN `placement` like '%Doggie Cam :15%' then 'Doggie Cam :15'
+ 	Else `placement`
+	END)
+
+12. Case Statement with a Calculated Field 
+	(SUM(`Spend`) /
+
+	 SUM(
+	  (CASE  WHEN (`AccountName` LIKE '%Prospecting%') THEN 
+	   (IFNULL(`ActionsOffsiteConversion.fbPixelPurchase28dayClick`,0) + IFNULL(`ActionsOffsiteConversion.fbPixelPurchase1dayView`,0)) 
+	   
+	ELSE IFNULL(`ActionsOffsiteConversion.fbPixelPurchase28dayClick`,0) END )))
+
+13. Calulated Field with Null Values and/or Divding by a Null Value 
+	IFNULL(SUM(`Dbm Cost (USD)`*1.12) / SUM(NULLIF(`Clicks`,0)),0)
+
