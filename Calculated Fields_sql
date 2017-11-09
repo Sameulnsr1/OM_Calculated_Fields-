@@ -54,4 +54,15 @@
 
 13. Calulated Field with Null Values and/or Divding by a Null Value 
 	IFNULL(SUM(`Dbm Cost (USD)`*1.12) / SUM(NULLIF(`Clicks`,0)),0)
+	
+14. Sum Statement 
+	Sum (CASE 
+ 		
+		WHEN `Date` > '2017-09-24' then 
+ 
+		1.08*((IFNULL(`Instagram Spend`,0))+(IFNULL(`Facebook Spend`,0))+(IFNULL(`DBM Media Spend`,0)))+(((IFNULL(`DBM InStream Impressions`,0))/1000)*0.42)+(((IFNULL(`DBM Tracker Impressions`,0))/1000)*0.1)
+
+		ELSE 1.07*((IFNULL(`Instagram Spend`,0))+(IFNULL(`Facebook Spend`,0))+(IFNULL(`DBM Media Spend`,0)))+(((IFNULL(`DBM InStream Impressions`,0))/1000)*0.42)+(((IFNULL(`DBM Tracker Impressions`,0))/1000)*0.1)
+	    
+	    END)
 
