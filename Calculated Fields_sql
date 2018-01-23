@@ -65,4 +65,27 @@
 		ELSE 1.07*((IFNULL(`Instagram Spend`,0))+(IFNULL(`Facebook Spend`,0))+(IFNULL(`DBM Media Spend`,0)))+(((IFNULL(`DBM InStream Impressions`,0))/1000)*0.42)+(((IFNULL(`DBM Tracker Impressions`,0))/1000)*0.1)
 	    
 	    END)
+	    
+15. Month Name
+	MONTHNAME(MONTH(`date`))
+	
+16. Lift vs. PSA (1D)
+		(
+	SUM((CASE 
+	     WHEN `campaign` like '%test%' then IFNULL(`total conversions`,0)
+	     END))
+	     /
+	     NULLIF((SUM((CASE 
+		   WHEN `campaign` like '%test%' then IFNULL(`impressions`,0)
+		   END))),0))
+	-
+	
+	(
+	SUM((CASE 
+	     WHEN `campaign` like '%control%' then IFNULL(`total conversions`,0)
+	     END))
+	     /
+	     NULLIF((SUM((CASE 
+		   WHEN `campaign` like '%control%' then IFNULL(`impressions`,0)
+		   END))),0))
 
